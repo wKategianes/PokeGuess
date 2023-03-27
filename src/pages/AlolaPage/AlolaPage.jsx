@@ -1,11 +1,10 @@
-import kantoMap from '../../images/kantoMap.png';
+import AlolaRegionImage from '../../images/AlolaRegion.png';
+import './Alola.css';
 
 export default function AlolaPage() {
 
-  return ( 
-  <>
-  <h1>Alola</h1>
-  <ul></ul>
-  </>
+  return (
+    <img src={AlolaRegionImage} width='100%' />
+
     )
 }

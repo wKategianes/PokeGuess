@@ -1,11 +1,10 @@
-import kantoMap from '../../images/kantoMap.png';
+import HoennRegionImage from '../../images/HoennRegion.png';
+import './Hoenn.css';
 
 export default function HoennPage() {
 
   return ( 
-  <>
-  <h1>Hoenn</h1>
-  <ul></ul>
-  </>
+    <img src={HoennRegionImage} width='100%' />
+
     )
 }

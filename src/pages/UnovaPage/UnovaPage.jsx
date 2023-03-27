@@ -1,11 +1,10 @@
-import kantoMap from '../../images/kantoMap.png';
+import UnovaRegionImage from '../../images/UnovaRegion.png';
+import './Unova.css'
 
 export default function UnovaPage() {
 
   return ( 
-  <>
-  <h1>Unova</h1>
-  <ul></ul>
-  </>
+    <img src={UnovaRegionImage} width='100%' />
+
     )
 }

@@ -1,11 +1,10 @@
-import kantoMap from '../../images/kantoMap.png';
+import kalosRegionImage from '../../images/KalosRegion.webp';
+import './Kalos.css'
 
 export default function KalosPage() {
 
-  return ( 
-  <>
-  <h1>Kalos</h1>
-  <ul></ul>
-  </>
+  return (
+    <img src={kalosRegionImage} width='100%' />
+
     )
 }

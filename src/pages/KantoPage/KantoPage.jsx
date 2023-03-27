@@ -1,11 +1,10 @@
-import kantoMap from '../../images/kantoMap.png';
+import kantoRegionImage from '../../images/KantoRegion.webp';
+import './Kanto.css'
 
 export default function KantoPage() {
 
-  return ( 
-  <>
-  <h1>Kanto</h1>
-  <ul></ul>
-  </>
+  return (
+    <img src={kantoRegionImage} width='100%' />
+
     )
 }

@@ -1,11 +1,10 @@
-import kantoMap from '../../images/kantoMap.png';
+import JohtoRegionImage from '../../images/JohtoRegion.webp';
+import './Johto.css';
 
 export default function JohtoPage() {
 
   return ( 
-  <>
-  <h1>Johto</h1>
-  <ul></ul>
-  </>
+    <img src={JohtoRegionImage} width='100%' />
+
     )
 }

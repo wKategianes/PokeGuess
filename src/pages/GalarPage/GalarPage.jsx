@@ -1,11 +1,10 @@
-import kantoMap from '../../images/kantoMap.png';
+import GalarRegionImage from '../../images/GalarRegion.png';
+import './Galar.css';
 
 export default function GalarPage() {
 
   return ( 
-  <>
-  <h1>Galar</h1>
-  <ul></ul>
-  </>
+    <img src={GalarRegionImage} width='100%' />
+
     )
 }

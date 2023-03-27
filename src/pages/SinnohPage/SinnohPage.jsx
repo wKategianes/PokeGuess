@@ -1,11 +1,9 @@
-import kantoMap from '../../images/kantoMap.png';
+import SinnohRegionImage from '../../images/SinnohRegion.webp';
+import './Sinnoh.css';
 
 export default function SinnohPage() {
 
   return ( 
-  <>
-  <h1>Sinnoh</h1>
-  <ul></ul>
-  </>
+    <img src={SinnohRegionImage} width='100%' />
     )
 }
