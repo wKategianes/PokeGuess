@@ -1,14 +1,36 @@
 .navBar {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     background-color: #e53935;
-    border-radius: 5px;  
-}
-
-.navItem {
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .navItem {
+    background-color: #f5df4d;
+    border: none;
+    border-radius: 5px;
+    color: #3d3d3d;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
     margin-right: 10px;
-}
-
-.logo {
-    margin-right: auto;
-}
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .navItem:hover {
+    background-color: #f4c30d;
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .userContainer {
+    display: flex;
+    align-items: center;
+  }

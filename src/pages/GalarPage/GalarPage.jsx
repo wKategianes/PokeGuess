@@ -4,7 +4,7 @@ import './Galar.css';
 export default function GalarPage() {
 
   return ( 
-    <img src={GalarRegionImage} width='100%' />
+    <img src={GalarRegionImage} width='100%'/>
 
     )
 }

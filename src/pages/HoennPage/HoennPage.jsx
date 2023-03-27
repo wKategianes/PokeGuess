@@ -4,7 +4,7 @@ import './Hoenn.css';
 export default function HoennPage() {
 
   return ( 
-    <img src={HoennRegionImage} width='100%' />
+    <img src={HoennRegionImage} width='100%'/>
 
     )
 }

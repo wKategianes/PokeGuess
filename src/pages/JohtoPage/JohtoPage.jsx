@@ -4,7 +4,7 @@ import './Johto.css';
 export default function JohtoPage() {
 
   return ( 
-    <img src={JohtoRegionImage} width='100%' />
+    <img src={JohtoRegionImage} width='100%'/>
 
     )
 }
