@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import Pokedex from 'pokedex-promise-v2';
+import './KantoPokemon.css';
 
 export default function KantoPokemon() {
   const [pokemonData, setPokemonData] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
 
   useEffect(() => {
     const P = new Pokedex();
@@ -69,7 +71,10 @@ export default function KantoPokemon() {
     const overlay = document.getElementById(`overlay-${id}`);
     overlay.style.visibility = 'visible';
     overlay.style.opacity = 1;
-  };
+    
+    const pokemon = pokemonData.find(p => p.id === id);
+    setSelectedPokemon(pokemon);
+  };  
 
   const handleMouseLeave = (id) => {
     const overlay = document.getElementById(`overlay-${id}`);
@@ -101,6 +106,45 @@ export default function KantoPokemon() {
           ))
         ) : (
           <p>Loading...</p>
+        )}
+  
+        {selectedPokemon && (
+          <div
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.5)',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            onClick={() => setSelectedPokemon(null)}
+          >
+            <div
+              style={{
+                background: 'white',
+                padding: '20px',
+                borderRadius: '5px',
+                textAlign: 'center',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2>Who's that Pokemon?</h2>
+              <img
+                src={selectedPokemon.sprites.other['official-artwork'].front_default}
+                alt={selectedPokemon.name}
+                style={{ maxWidth: '100%', marginBottom: '10px' }}
+              />
+              <input
+                type="text"
+                placeholder="Enter your guess"
+                style={{ width: '100%', padding: '5px' }}
+              />
+            </div>
+          </div>
         )}
       </div>
     </>
