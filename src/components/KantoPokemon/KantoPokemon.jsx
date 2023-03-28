@@ -20,66 +20,9 @@ export default function KantoPokemon() {
       });
   }, []);
 
-  const styles = {
-    card: {
-      border: '1px solid black',
-      borderRadius: '5px',
-      margin: '5px',
-      padding: '5px',
-      width: 'calc(20% - 10px)',
-      height: 'auto',
-      overflow: 'hidden',
-      position: 'relative',
-      display: 'inline-block',
-    },
-    image: {
-      width: '100%',
-      height: 'auto',
-    },
-    name: {
-      position: 'absolute',
-      bottom: 0,
-      left: 0,
-      right: 0,
-      padding: '5px',
-      background: 'rgba(0, 0, 0, 0.5)',
-      color: 'white',
-      fontSize: '16px',
-      fontWeight: 'bold',
-      textAlign: 'center',
-      textTransform: 'capitalize',
-    },
-    overlay: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: 'rgba(255, 255, 255, 0.5)',
-      visibility: 'hidden',
-      opacity: 0,
-      transition: 'visibility 0s, opacity 0.5s ease',
-    },
-    overlayHover: {
-      visibility: 'visible',
-      opacity: 1,
-      transition: 'opacity 0.5s ease',
-    },
-  };
-
-  const handleMouseEnter = (id) => {
-    const overlay = document.getElementById(`overlay-${id}`);
-    overlay.style.visibility = 'visible';
-    overlay.style.opacity = 1;
-    
+  const handleClick = (id) => {
     const pokemon = pokemonData.find(p => p.id === id);
     setSelectedPokemon(pokemon);
-  };  
-
-  const handleMouseLeave = (id) => {
-    const overlay = document.getElementById(`overlay-${id}`);
-    overlay.style.visibility = 'hidden';
-    overlay.style.opacity = 0;
   };
 
   return (
@@ -90,18 +33,15 @@ export default function KantoPokemon() {
           pokemonData.map((pokemon) => (
             <div
               key={pokemon.id}
-              style={styles.card}
-              onMouseEnter={() => handleMouseEnter(pokemon.id)}
-              onMouseLeave={() => handleMouseLeave(pokemon.id)}
+              className="card"
+              onClick={() => handleClick(pokemon.id)}
             >
               <img
                 src={pokemon.sprites.other['official-artwork'].front_default}
                 alt={pokemon.name}
-                style={styles.image}
+                className="img"
               />
-              <div id={`overlay-${pokemon.id}`} style={styles.overlay}>
-                <div style={styles.name}>{pokemon.name}</div>
-              </div>
+              <div className="name">{pokemon.name}</div>
             </div>
           ))
         ) : (

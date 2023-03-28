@@ -21,8 +21,8 @@ export default function NavBar({ user, setUser }) {
       <Link class="navItem" to="/alola">Alola</Link>
       <Link class="navItem" to="/galar">Galar</Link>
       <div class="userContainer">
-        <span>Welcome, {user.name}</span>
-        <Link class="navItem" to="" onClick={handleLogOut}>Log Out</Link>
+        {user && <span>Welcome, {user.name}</span>}
+        {user && <Link class="navItem" to="" onClick={handleLogOut}>Log Out</Link>}
       </div>
     </nav>
   );

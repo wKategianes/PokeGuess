@@ -46,3 +46,9 @@
     text-align: center;
     text-transform: capitalize;
   }
+  
+  button:active {
+    background-color: #ccc;
+    color: #fff;
+  }
+  

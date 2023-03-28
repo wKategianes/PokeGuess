@@ -20,9 +20,9 @@ export default function App() {
 
   return (
     <main className="App">
+      <NavBar user={user} setUser={setUser} />
       { user ?
           <>
-          <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
               <Route path="/kanto" element={<KantoPage />} />
