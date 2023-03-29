@@ -5,6 +5,8 @@ import './KantoPokemon.css';
 export default function KantoPokemon() {
   const [pokemonData, setPokemonData] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [guess, setGuess] = useState('');
+  const [isCorrectGuess, setIsCorrectGuess] = useState(false);
 
   useEffect(() => {
     const P = new Pokedex();
@@ -23,6 +25,17 @@ export default function KantoPokemon() {
   const handleClick = (id) => {
     const pokemon = pokemonData.find(p => p.id === id);
     setSelectedPokemon(pokemon);
+    setGuess('');
+    setIsCorrectGuess(false);
+  };
+
+  const handleGuess = (event) => {
+    event.preventDefault();
+    if (guess.toLowerCase() === selectedPokemon.name.toLowerCase()) {
+      setIsCorrectGuess(true);
+    } else {
+      setIsCorrectGuess(false);
+    }
   };
 
   return (
@@ -47,7 +60,7 @@ export default function KantoPokemon() {
         ) : (
           <p>Loading...</p>
         )}
-  
+
         {selectedPokemon && (
           <div
             style={{
@@ -78,11 +91,17 @@ export default function KantoPokemon() {
                 alt={selectedPokemon.name}
                 style={{ maxWidth: '100%', marginBottom: '10px' }}
               />
-              <input
-                type="text"
-                placeholder="Enter your guess"
-                style={{ width: '100%', padding: '5px' }}
-              />
+              <form onSubmit={handleGuess}>
+                <input
+                  type="text"
+                  placeholder="Enter your guess"
+                  style={{ width: '100%', padding: '5px' }}
+                  value={guess}
+                  onChange={(event) => setGuess(event.target.value)}
+                />
+                <button type="submit">Guess</button>
+                {isCorrectGuess && <p>Correct!</p>}
+              </form>
             </div>
           </div>
         )}
