@@ -7,6 +7,7 @@ export default function KantoPokemon() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [guess, setGuess] = useState('');
   const [isCorrectGuess, setIsCorrectGuess] = useState(false);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     const P = new Pokedex();
@@ -29,18 +30,36 @@ export default function KantoPokemon() {
     setIsCorrectGuess(false);
   };
 
-  const handleGuess = (event) => {
+  const handleGuess = async (event) => {
     event.preventDefault();
     if (guess.toLowerCase() === selectedPokemon.name.toLowerCase()) {
       setIsCorrectGuess(true);
+      setScore(score + 1);
+  
+      // Make a POST request to update the user's score
+      const response = await fetch('/api/users/score', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`, // Include the user's JWT token in the Authorization header
+        },
+        body: JSON.stringify({ score: score + 1 }), // Send the updated score in the request body
+      });
+  
+      if (!response.ok) {
+        const error = await response.json();
+        console.error(error);
+      }
     } else {
       setIsCorrectGuess(false);
+      setScore(score - 1);
     }
   };
 
   return (
     <>
       <h1>Kanto Pokemon</h1>
+      <p>Score: {score}</p>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {pokemonData.length > 0 ? (
           pokemonData.map((pokemon) => (
@@ -103,7 +122,7 @@ export default function KantoPokemon() {
                 {isCorrectGuess && <p>Correct!</p>}
               </form>
             </div>
-          </div>
+            </div>
         )}
       </div>
     </>
