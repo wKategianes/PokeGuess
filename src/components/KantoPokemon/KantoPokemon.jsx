@@ -36,18 +36,24 @@ export default function KantoPokemon() {
       setIsCorrectGuess(true);
       setScore(score + 1);
   
-      // Make a POST request to update the user's score
-      const response = await fetch('/api/users/score', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // Include the user's JWT token in the Authorization header
-        },
-        body: JSON.stringify({ score: score + 1 }), // Send the updated score in the request body
-      });
+      try {
+        const response = await fetch('/api/users/score', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({ score: score + 1 }), // Send the updated score in the request body
+        });
   
-      if (!response.ok) {
-        const error = await response.json();
+        if (response.ok) {
+          const user = await response.json();
+          setScore(user.score);
+        } else {
+          const error = await response.json();
+          console.error(error);
+        }
+      } catch (error) {
         console.error(error);
       }
     } else {
@@ -55,6 +61,7 @@ export default function KantoPokemon() {
       setScore(score - 1);
     }
   };
+  
 
   return (
     <>
