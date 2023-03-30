@@ -8,6 +8,7 @@ export default function KantoPokemon() {
   const [guess, setGuess] = useState('');
   const [isCorrectGuess, setIsCorrectGuess] = useState(false);
   const [score, setScore] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     const P = new Pokedex();
@@ -28,6 +29,7 @@ export default function KantoPokemon() {
     setSelectedPokemon(pokemon);
     setGuess('');
     setIsCorrectGuess(false);
+    setErrorMessage('');
   };
 
   const handleGuess = async (event) => {
@@ -49,6 +51,9 @@ export default function KantoPokemon() {
         if (response.ok) {
           const user = await response.json();
           setScore(user.score);
+          setTimeout(() => {
+            setSelectedPokemon(null);
+          }, 2000); // Close popup after 2 seconds
         } else {
           const error = await response.json();
           console.error(error);
@@ -59,6 +64,10 @@ export default function KantoPokemon() {
     } else {
       setIsCorrectGuess(false);
       setScore(score - 1);
+      setErrorMessage('Incorrect guess!');
+      setTimeout(() => {
+        setSelectedPokemon(null);
+      }, 2000); // Close popup after 2 seconds
     }
   };
   
@@ -126,10 +135,11 @@ export default function KantoPokemon() {
                   onChange={(event) => setGuess(event.target.value)}
                 />
                 <button type="submit">Guess</button>
-                {isCorrectGuess && <p>Correct!</p>}
               </form>
+              {isCorrectGuess && <p>Correct!</p>}
+              {errorMessage && <p>{errorMessage}</p>}
             </div>
-            </div>
+          </div>
         )}
       </div>
     </>

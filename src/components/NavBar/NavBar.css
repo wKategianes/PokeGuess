@@ -1,36 +1,59 @@
 .navBar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #e53935;
-    border-radius: 5px;
-    padding: 10px;
-  }
-  
-  .navItem {
-    background-color: #f5df4d;
-    border: none;
-    border-radius: 5px;
-    color: #3d3d3d;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    margin-right: 10px;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .navItem:hover {
-    background-color: #f4c30d;
-  }
-  
-  .logo img {
-    height: 50px;
-  }
-  
-  .userContainer {
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e53d2f; /* pokeball red */
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.navItem {
+  background-color: #4a4ae6; /* blue */
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 10px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  box-shadow: 0px 0px 10px #000;
+}
+
+.navItem:hover {
+  background-color: #3b3be3; /* darker blue */
+  transform: scale(1.05);
+}
+
+.logo img {
+  height: 50px;
+}
+
+.userContainer {
+  display: flex;
+  align-items: center;
+}
+
+.navItem:nth-child(1) {
+  background-image: url("https://cdn.bulbagarden.net/upload/3/31/Pok%C3%A9dex_logo.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+}
+
+.navItem:nth-child(2) {
+  background-image: url("https://cdn.bulbagarden.net/upload/thumb/8/8a/Pok%C3%A9_Ball_icon_SM.png/120px-Pok%C3%A9_Ball_icon_SM.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+.navItem:nth-child(3) {
+  background-image: url("https://cdn.bulbagarden.net/upload/thumb/8/89/Pok%C3%A9dex_logo.svg/1200px-Pok%C3%A9dex_logo.svg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%;
+}
