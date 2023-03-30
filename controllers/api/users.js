@@ -17,7 +17,10 @@ function checkToken(req, res) {
 async function create(req, res) {
   try {
     // Add the user to the db
-    const user = await User.create(req.body);
+    const user = await User.create({
+      ...req.body,
+      score: [{ value: 0 }]
+    });
     const token = createJWT(user);
     res.json(token);
   } catch (err) {
@@ -30,10 +33,11 @@ async function login(req, res) {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) throw new Error();
-    await bcrypt.compare(req.body.password, user.password);
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+    if (!isMatch) throw new Error();
     const token = createJWT(user);
     res.json(token);
-  } catch {
+  } catch (err) {
     res.status(400).json({ err: 'Invalid login credentials' });
   }
 }
@@ -47,15 +51,35 @@ function createJWT(user) {
 }
 
 async function updateScore(req, res) {
+  const { userId, score } = req.body;
+
   try {
-    const user = await User.findByIdAndUpdate(
-      req.user._id,
-      { score: req.body.score },
-      { new: true }
-    );
-    res.json(user);
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+      return res.status(404).send({ message: 'User not found' });
+    }
+
+    // Get the current score array
+    const scoreArray = user.score;
+
+    // If there is no score object in the array, add one with the current score
+    if (scoreArray.length === 0) {
+      scoreArray.push({ value: score });
+    } else {
+      // If there is a score object in the array, update it with the current score
+      scoreArray[0].value = Math.max(scoreArray[0].value, score);
+    }
+
+    // Update the score array in the user model
+    user.score = scoreArray;
+    await user.save();
+
+    return res.status(200).send(user);
+
   } catch (err) {
-    console.log(err);
-    res.status(400).json(err);
+    console.error(err);
+    return res.status(400).send(err);
   }
 }
+
+

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
-import './App.css';
 import AuthPage from '../AuthPage/AuthPage';
 import NavBar from '../../components/NavBar/NavBar';
 import KantoPage from '../KantoPage/KantoPage';
@@ -12,6 +11,7 @@ import UnovaPage from '../UnovaPage/UnovaPage';
 import KalosPage from '../KalosPage/KalosPage';
 import AlolaPage from '../AlolaPage/AlolaPage';
 import GalarPage from '../GalarPage/GalarPage';
+import './App.css';
 
 export default function App() {
   const [user, setUser] = useState(getUser());

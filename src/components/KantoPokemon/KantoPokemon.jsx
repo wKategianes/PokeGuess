@@ -7,7 +7,7 @@ export default function KantoPokemon() {
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [guess, setGuess] = useState('');
   const [isCorrectGuess, setIsCorrectGuess] = useState(false);
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -24,6 +24,29 @@ export default function KantoPokemon() {
       });
   }, []);
 
+  useEffect(() => {
+    async function getScore() {
+      try {
+        const response = await fetch('/api/users/score', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setScore(data.score);
+        } else {
+          console.log('Error fetching score:', response.status);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    getScore();
+  }, []);
+
   const handleClick = (id) => {
     const pokemon = pokemonData.find(p => p.id === id);
     setSelectedPokemon(pokemon);
@@ -36,21 +59,22 @@ export default function KantoPokemon() {
     event.preventDefault();
     if (guess.toLowerCase() === selectedPokemon.name.toLowerCase()) {
       setIsCorrectGuess(true);
-      const newScore = score + 1;
+      const newScore = score === null ? 1 : score + 1;
+      setScore(newScore);
   
       try {
         const response = await fetch('/api/users/score', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
-          body: JSON.stringify({ score: { value: newScore } }), // Pass an object with the score value
+          body: JSON.stringify({ score: newScore })
         });
   
         if (response.ok) {
-          const user = await response.json();
-          setScore(user.score.value);
+          const data = await response.json();
+          setScore(data.score.value);
           setTimeout(() => {
             setSelectedPokemon(null);
           }, 2000); // Close popup after 2 seconds
@@ -62,17 +86,9 @@ export default function KantoPokemon() {
         console.error(error);
       }
     } else {
-      setIsCorrectGuess(false);
-      const newScore = score - 1;
-      setScore(newScore);
-      setErrorMessage('Incorrect guess!');
-      setTimeout(() => {
-        setSelectedPokemon(null);
-      }, 2000); // Close popup after 2 seconds
+      setErrorMessage('Incorrect guess. Try again!');
     }
-  };
-  
-  
+  };  
 
   return (
     <>
