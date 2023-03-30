@@ -4,6 +4,13 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
 
+const scoreSchema = new Schema({
+  value: {
+    type: Number,
+    default: 0
+  }
+});
+
 const userSchema = new Schema({
   name: {
     type: String,
@@ -20,10 +27,7 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  score: {
-    type: Number,
-    default: 0
-  }
+  score: [scoreSchema]
 }, {
   timestamps: true,
   toJSON: {
@@ -41,4 +45,6 @@ userSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
 });
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;

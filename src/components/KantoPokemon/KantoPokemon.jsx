@@ -36,7 +36,7 @@ export default function KantoPokemon() {
     event.preventDefault();
     if (guess.toLowerCase() === selectedPokemon.name.toLowerCase()) {
       setIsCorrectGuess(true);
-      setScore(score + 1);
+      const newScore = score + 1;
   
       try {
         const response = await fetch('/api/users/score', {
@@ -45,12 +45,12 @@ export default function KantoPokemon() {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
-          body: JSON.stringify({ score: score + 1 }), // Send the updated score in the request body
+          body: JSON.stringify({ score: { value: newScore } }), // Pass an object with the score value
         });
   
         if (response.ok) {
           const user = await response.json();
-          setScore(user.score);
+          setScore(user.score.value);
           setTimeout(() => {
             setSelectedPokemon(null);
           }, 2000); // Close popup after 2 seconds
@@ -63,13 +63,15 @@ export default function KantoPokemon() {
       }
     } else {
       setIsCorrectGuess(false);
-      setScore(score - 1);
+      const newScore = score - 1;
+      setScore(newScore);
       setErrorMessage('Incorrect guess!');
       setTimeout(() => {
         setSelectedPokemon(null);
       }, 2000); // Close popup after 2 seconds
     }
   };
+  
   
 
   return (
