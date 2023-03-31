@@ -54,7 +54,7 @@ export default function KalosPokemon({ user, setUser }) {
 
   return (
     <>
-      <h1>Kalos Pokemon</h1>
+      <h1 className='h1-title'>Kalos Pokemon</h1>
       <p>Score: {score}</p>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {pokemonData.length > 0 ? (

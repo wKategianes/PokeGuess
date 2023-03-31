@@ -54,7 +54,7 @@ export default function KantoPokemon({ user, setUser }) {
 
   return (
     <>
-      <h1>Kanto Pokemon</h1>
+      <h1 className='h1-title'>Kanto Pokemon</h1>
       <p>Score: {score}</p>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {pokemonData.length > 0 ? (

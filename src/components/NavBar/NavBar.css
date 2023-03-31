@@ -5,6 +5,11 @@
   background-color: #e53d2f; /* pokeball red */
   border-radius: 5px;
   padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .logo {
@@ -37,4 +42,8 @@
 .navItem:hover {
   background-color: #3b3be3; /* darker blue */
   transform: scale(1.05);
+}
+
+.main {
+  padding-top: 60px; /* adjust this value to match the height of your NavBar */
 }

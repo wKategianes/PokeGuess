@@ -54,7 +54,7 @@ export default function HoennPokemon({ user, setUser }) {
 
   return (
     <>
-      <h1>Hoenn Pokemon</h1>
+      <h1 className='h1-title'>Hoenn Pokemon</h1>
       <p>Score: {score}</p>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {pokemonData.length > 0 ? (

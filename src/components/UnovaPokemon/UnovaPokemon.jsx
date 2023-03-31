@@ -54,7 +54,7 @@ export default function UnovaPokemon({ user, setUser }) {
 
   return (
     <>
-      <h1>Unova Pokemon</h1>
+      <h1 className='h1-title'>Unova Pokemon</h1>
       <p>Score: {score}</p>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {pokemonData.length > 0 ? (
