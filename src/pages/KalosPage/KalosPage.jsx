@@ -1,10 +1,11 @@
+import KalosPokemon from '../../components/KalosPokemon/KalosPokemon';
 import kalosRegionImage from '../../images/KalosRegion.webp';
 import './Kalos.css'
 
-export default function KalosPage() {
+export default function KalosPage({user, setUser}) {
 
   return (
-    <img src={kalosRegionImage} width='100%' />
+    <><KalosPokemon user={user} setUser={setUser} /></>
 
     )
 }

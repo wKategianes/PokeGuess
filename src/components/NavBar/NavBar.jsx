@@ -11,18 +11,21 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav className="NavBar">
+      <div className="logo">
+        <img src={logo} alt="Pokeball logo" />
+      </div>
       { user && 
-      <>
-      <Link to="/kanto" className="navItem">Kanto</Link>
-      <Link to="/johto" className="navItem">Johto</Link>
-      <Link to="/hoenn" className="navItem">Hoenn</Link>
-      <Link to="/sinnoh" className="navItem">Sinnoh</Link>
-      <Link to="/unova" className="navItem">Unova</Link>
-      <Link to="/kalos" className="navItem">Kalos</Link>
-      <Link to="/alola" className="navItem">Alola</Link>
-      <Link to="/galar" className="navItem">Galar</Link>
-        <button onClick={handleLogOut} className="navItem">Logout</button>
-        </>
+        <div className="navItems">
+          <Link to="/kanto" className="navItem">Kanto</Link>
+          <Link to="/johto" className="navItem">Johto</Link>
+          <Link to="/hoenn" className="navItem">Hoenn</Link>
+          <Link to="/sinnoh" className="navItem">Sinnoh</Link>
+          <Link to="/unova" className="navItem">Unova</Link>
+          <Link to="/kalos" className="navItem">Kalos</Link>
+          <Link to="/alola" className="navItem">Alola</Link>
+          <Link to="/galar" className="navItem">Galar</Link>
+          <button onClick={handleLogOut} className="navItem">Logout</button>
+        </div>
       }
     </nav>
   );

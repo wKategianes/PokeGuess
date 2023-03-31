@@ -1,10 +1,11 @@
+import JohtoPokemon from '../../components/JohtoPokemon/JohtoPokemon';
 import JohtoRegionImage from '../../images/JohtoRegion.webp';
 import './Johto.css';
 
-export default function JohtoPage() {
+export default function JohtoPage({user, setUser}) {
 
   return ( 
-    <img src={JohtoRegionImage} width='100%'/>
+    <><JohtoPokemon user={user} setUser={setUser} /></>
 
     )
 }

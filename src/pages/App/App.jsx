@@ -24,13 +24,13 @@ export default function App() {
             <Routes>
               {/* Route components in here */}
               <Route path="/kanto" element={<KantoPage user={user} setUser={setUser} />} />
-              <Route path="/johto" element={<JohtoPage />} />
-              <Route path="/hoenn" element={<HoennPage />} />
-              <Route path="/sinnoh" element={<SinnohPage />} />
-              <Route path="/unova" element={<UnovaPage />} />
-              <Route path="/kalos" element={<KalosPage />} />
-              <Route path="/alola" element={<AlolaPage />} />
-              <Route path="/galar" element={<GalarPage />} />
+              <Route path="/johto" element={<JohtoPage user={user} setUser={setUser} />} />
+              <Route path="/hoenn" element={<HoennPage user={user} setUser={setUser} />} />
+              <Route path="/sinnoh" element={<SinnohPage user={user} setUser={setUser} />} />
+              <Route path="/unova" element={<UnovaPage user={user} setUser={setUser} />} />
+              <Route path="/kalos" element={<KalosPage user={user} setUser={setUser} />} />
+              <Route path="/alola" element={<AlolaPage user={user} setUser={setUser} />} />
+              <Route path="/galar" element={<GalarPage user={user} setUser={setUser} />} />
             </Routes>
           </>
           :         

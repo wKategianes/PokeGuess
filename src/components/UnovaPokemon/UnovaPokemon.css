@@ -1,0 +1,70 @@
+.card {
+  border: 1px solid black;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  width: calc(20% - 10px);
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+}
+
+.card:hover {
+  animation: pulse 1s ease-in-out infinite; /* Add the pulse animation to the hover selector */
+  transform: scale(1.05); /* Increase the size of the card on hover */
+  cursor: pointer; /* Change the cursor to a pointer on hover */
+}
+  
+  .card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .card .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .card:hover .overlay {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+  
+  .card .overlay .name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: capitalize;
+  }
+  
+  button:active {
+    background-color: #ccc;
+    color: #fff;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }    
+  }
