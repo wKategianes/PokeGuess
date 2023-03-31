@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
+import * as userAPI from '../../utilities/users-api';
 import Pokedex from 'pokedex-promise-v2';
 import './KantoPokemon.css';
 
-export default function KantoPokemon() {
+export default function KantoPokemon({ user, setUser }) {
   const [pokemonData, setPokemonData] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [guess, setGuess] = useState('');
   const [isCorrectGuess, setIsCorrectGuess] = useState(false);
-  const [score, setScore] = useState(null);
+  let [score, setScore] = useState(user.score[0].value);
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -24,28 +25,6 @@ export default function KantoPokemon() {
       });
   }, []);
 
-  useEffect(() => {
-    async function getScore() {
-      try {
-        const response = await fetch('/api/users/score', {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setScore(data.score);
-        } else {
-          console.log('Error fetching score:', response.status);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    getScore();
-  }, []);
 
   const handleClick = (id) => {
     const pokemon = pokemonData.find(p => p.id === id);
@@ -59,36 +38,19 @@ export default function KantoPokemon() {
     event.preventDefault();
     if (guess.toLowerCase() === selectedPokemon.name.toLowerCase()) {
       setIsCorrectGuess(true);
-      const newScore = score === null ? 1 : score + 1;
+      let newScore = score++;
       setScore(newScore);
-  
-      try {
-        const response = await fetch('/api/users/score', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          },
-          body: JSON.stringify({ score: newScore })
-        });
-  
-        if (response.ok) {
-          const data = await response.json();
-          setScore(data.score.value);
-          setTimeout(() => {
-            setSelectedPokemon(null);
-          }, 2000); // Close popup after 2 seconds
-        } else {
-          const error = await response.json();
-          console.error(error);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    } else {
-      setErrorMessage('Incorrect guess. Try again!');
-    }
-  };  
+      console.log(score, "This is score variable on line 64 of the handleGuess function");
+      const updateScore = await userAPI.modifyScore(user._id, score);
+      console.log(updateScore, "This is updateScore right before the setUser(updateScore)");
+      const updateUser = {...updateScore};
+      setUser(updateUser);
+      setScore(updateScore.score[0].value);
+      setTimeout(() => {
+        setSelectedPokemon(null);
+        }, 2000); // Close popup after 2 seconds
+  }; 
+}
 
   return (
     <>

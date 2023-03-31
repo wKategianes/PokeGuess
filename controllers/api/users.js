@@ -51,35 +51,12 @@ function createJWT(user) {
 }
 
 async function updateScore(req, res) {
-  const { userId, score } = req.body;
-
-  try {
-    const user = await User.findOne({ _id: userId });
-    if (!user) {
-      return res.status(404).send({ message: 'User not found' });
-    }
-
-    // Get the current score array
-    const scoreArray = user.score;
-
-    // If there is no score object in the array, add one with the current score
-    if (scoreArray.length === 0) {
-      scoreArray.push({ value: score });
-    } else {
-      // If there is a score object in the array, update it with the current score
-      scoreArray[0].value = Math.max(scoreArray[0].value, score);
-    }
-
-    // Update the score array in the user model
-    user.score = scoreArray;
-    await user.save();
-
-    return res.status(200).send(user);
-
-  } catch (err) {
-    console.error(err);
-    return res.status(400).send(err);
-  }
+const user = await User.findOne({_id: req.params.id});
+let userScore = user.score[0];
+userScore.value = req.body.score;
+await user.save();
+console.log(user, "This is the user inside of the updateScore controller function");
+res.json(user);
 }
 
 
