@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
-import * as userAPI from '../../utilities/users-api';
 import AuthPage from '../AuthPage/AuthPage';
 import NavBar from '../../components/NavBar/NavBar';
 import KantoPage from '../KantoPage/KantoPage';
@@ -21,18 +20,13 @@ export default function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const fetchedUsers = await userAPI.getUsers();
-        setUsers(fetchedUsers);
-      } catch (error) {
-        console.log(error);
-      }
+    async function getUsers() {
+      const response = await fetch('/api/users');
+      const data = await response.json();
+      setUsers(data);
     }
-    fetchUsers();
+    getUsers();
   }, []);
-
-  console.log(users, "This is the users state variable inside app.js");
 
   return (
     <main className="App">

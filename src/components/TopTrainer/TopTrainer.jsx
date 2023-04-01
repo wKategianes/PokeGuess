@@ -1,22 +1,13 @@
-import { getAllUsers } from '../../utilities/users-api';
-import { useEffect, useState } from 'react';
 import './TopTrainer.css';
 
-export default function TopTrainer() {
-  const [users, setUsers] = useState([]);
+export default function TopTrainer({ users }) {
+  const sortedUsers = [...users].sort((a, b) => b.score[0].value - a.score[0].value);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const users = await getAllUsers();
-      setUsers(users);
-    };
-  
-    fetchUsers();
-  }, []);
+  console.log(users, "This is the users prop being passed into the TopTrainer component")
 
   return (
     <div className="top-trainer">
-      <h2>Top Trainers</h2>
+      <h1>Top Trainers</h1>
       <table>
         <thead>
           <tr>
@@ -25,7 +16,7 @@ export default function TopTrainer() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {sortedUsers.map((user) => (
             <tr key={user._id}>
               <td>{user.name}</td>
               <td>{user.score[0].value}</td>

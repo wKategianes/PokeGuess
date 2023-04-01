@@ -7,7 +7,7 @@ module.exports = {
   login,
   checkToken,
   updateScore,
-  getAllUsers,
+  getAllUsers
 };
 
 function checkToken(req, res) {
@@ -62,13 +62,10 @@ res.json(user);
 
 async function getAllUsers(req, res) {
   try {
-    const users = await User.find().sort({ name: 1, "score.value": -1 });
+    const users = await User.find();
     res.json(users);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
   }
 }
-
-
-
