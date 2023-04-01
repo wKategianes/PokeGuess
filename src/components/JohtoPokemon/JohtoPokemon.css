@@ -1,3 +1,12 @@
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center; /* Center cards horizontally */
+}
+
 .card {
   border: 1px solid black;
   border-radius: 5px;
@@ -8,6 +17,10 @@
   overflow: hidden;
   position: relative;
   display: inline-block;
+  text-align: center; /* Center card content vertically and horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card:hover {
@@ -16,59 +29,60 @@
   cursor: pointer; /* Change the cursor to a pointer on hover */
 }
   
-  .card img {
-    width: 100%;
-    height: auto;
-  }
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Make sure image takes up full width of card */
+}
   
-  .card .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.5);
-    visibility: hidden;
-    opacity: 0;
-  }
+.card .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  visibility: hidden;
+  opacity: 0;
+}
   
-  .card:hover .overlay {
-    visibility: visible;
-    opacity: 1;
-    transition: opacity 0.5s ease;
-  }
+.card:hover .overlay {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
   
-  .card .overlay .name {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 5px;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    text-transform: capitalize;
-  }
+.card .overlay .name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+}
   
-  button:active {
-    background-color: #ccc;
-    color: #fff;
-  }
+button:active {
+  background-color: #ccc;
+  color: #fff;
+}
   
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1);
-    }    
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }    
+}
 
-  .h1-title {
+.h1-title {
   margin-top: 3.5%;
 }

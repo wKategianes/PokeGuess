@@ -14,16 +14,18 @@ export default function UnovaPokemon({ user, setUser }) {
   useEffect(() => {
     const P = new Pokedex();
 
-    // Get data for all original 151 Pokemon by ID
+    // Get data for all Pokemon by ID
     const pokemonIDs = Array.from({ length: 156 }, (_, index) => index + 494);
-    Promise.all(pokemonIDs.map((id) => P.getResource(`/api/v2/pokemon/${id}`)))
-      .then((responses) => {
-        setPokemonData(responses);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+      Promise.all(pokemonIDs.map((id) => P.getResource(`/api/v2/pokemon/${id}`)))
+        .then((responses) => {
+          // Shuffle the responses array randomly and select the first 8 items
+          const shuffledResponses = responses.sort(() => Math.random() - 0.5);
+          setPokemonData(shuffledResponses.slice(0, 8));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }, []);
 
 
   const handleClick = (id) => {
@@ -48,15 +50,21 @@ export default function UnovaPokemon({ user, setUser }) {
       setScore(updateScore.score[0].value);
       setTimeout(() => {
         setSelectedPokemon(null);
-        }, 2000); // Close popup after 2 seconds
-  }; 
-}
+      }, 2000); // Close popup after 2 seconds
+      setErrorMessage(null); // clear error message
+    } else {
+      setErrorMessage("Incorrect guess, try again!");
+      setTimeout(() => {
+        setErrorMessage(null); // clear error message
+      }, 1500);
+    }
+  };
 
   return (
     <>
       <h1 className='h1-title'>Unova Pokemon</h1>
       <p>Score: {score}</p>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', height: '100vh'  }}>
         {pokemonData.length > 0 ? (
           pokemonData.map((pokemon) => (
             <div

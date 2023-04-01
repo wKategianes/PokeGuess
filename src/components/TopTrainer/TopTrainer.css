@@ -1,54 +1,68 @@
 /* Header */
 .top-trainer h1 {
-    color: #ffcb05;
-    font-size: 48px;
-    text-align: center;
-    margin-top: 3.5%;
-    margin-bottom: 40px;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.3);    
-  }
-  
-  /* Table */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-bottom: 40px;
-  }
-  
-  th {
-    background-color: #ffcb05;
-    color: #2f2f2f;
-    font-size: 24px;
-    font-weight: bold;
-    padding: 20px;
-    text-align: center;
-    text-transform: uppercase;
-  }
-  
-  td {
-    background-color: #f2f2f2;
-    color: #2f2f2f;
-    font-size: 18px;
-    padding: 20px;
-    text-align: center;
-    vertical-align: middle;
-  }
-  
-  /* Pokemon images */
-  td:first-child {
-    position: relative;
-  }
-  
-  td:first-child::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0; /* Updated */
-    transform: translateY(-50%);
-    width: 64px;
-    height: 64px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
-  }
+  color: #ffcb05;
+  font-size: 48px;
+  text-align: center;
+  margin-top: 3.5%;
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.3);    
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 40px;
+  border: 2px solid #ffcb05;
+}
+
+th {
+  background-color: #ffcb05;
+  color: #2f2f2f;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  position: relative;
+  border: 2px solid #ffcb05;
+}
+
+td {
+  background-color: #f2f2f2;
+  color: #2f2f2f;
+  font-size: 18px;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  border: 2px solid #ffcb05;
+}
+
+/* Pikachu images */
+th:first-child::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
+}
+
+th:last-child::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
+}
