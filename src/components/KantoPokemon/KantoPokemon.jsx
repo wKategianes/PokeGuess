@@ -40,23 +40,24 @@ export default function KantoPokemon({ user, setUser }) {
       setIsCorrectGuess(true);
       let newScore = score++;
       setScore(newScore);
-      console.log(score, "This is score variable on line 64 of the handleGuess function");
       const updateScore = await userAPI.modifyScore(user._id, score);
-      console.log(updateScore, "This is updateScore right before the setUser(updateScore)");
       const updateUser = {...updateScore};
       setUser(updateUser);
       setScore(updateScore.score[0].value);
       setTimeout(() => {
         setSelectedPokemon(null);
         }, 2000); // Close popup after 2 seconds
-  }; 
+  } else {
+    setIsCorrectGuess(false);
+    setErrorMessage(`Sorry, your guess of "${guess}" is incorrect. The correct answer is "${selectedPokemon.name}".`);
+  }
 }
 
   return (
     <>
       <h1 className='h1-title'>Kanto Pokemon</h1>
       <p>Score: {score}</p>
-      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      <div className='card-container'>
         {pokemonData.length > 0 ? (
           pokemonData.map((pokemon) => (
             <div

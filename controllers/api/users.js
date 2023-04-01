@@ -7,6 +7,7 @@ module.exports = {
   login,
   checkToken,
   updateScore,
+  getAllUsers,
 };
 
 function checkToken(req, res) {
@@ -58,5 +59,16 @@ await user.save();
 console.log(user, "This is the user inside of the updateScore controller function");
 res.json(user);
 }
+
+async function getAllUsers(req, res) {
+  try {
+    const users = await User.find().sort({ name: 1, "score.value": -1 });
+    res.json(users);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+}
+
 
 

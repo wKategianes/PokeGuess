@@ -13,5 +13,7 @@ router.post('/login', usersCtrl.login);
 router.put('/:id/score', ensureLoggedIn, usersCtrl.updateScore);
 // GET /api/users/check-token
 router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
+// GET /api/users
+router.get('/', ensureLoggedIn, usersCtrl.getAllUsers)
 
 module.exports = router;

@@ -14,5 +14,14 @@ export async function checkToken() {
 }
 
 export async function modifyScore(user, score) {
-  return sendRequest(`${BASE_URL}/${user}/score`, "PUT", {score})
+  return sendRequest(`${BASE_URL}/${user}/score`, "PUT", {score});
+}
+
+export async function getUsers() {
+  return sendRequest(`${BASE_URL}`);
+}
+
+export async function getAllUsers() {
+  const res = await fetch('/api/users');
+  return await res.json();
 }
