@@ -1,8 +1,5 @@
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* Center cards horizontally */
-  align-items: center; /* Center cards vertically */
+.h1-title {
+  text-align: center;
 }
 
 .card {
@@ -10,77 +7,135 @@
   border-radius: 5px;
   margin: 5px;
   padding: 5px;
-  width: calc(20% - 10px);
-  height: auto;
+  width: calc(25% - 10px);
+  height: 300px;
   overflow: hidden;
   position: relative;
   display: inline-block;
-  text-align: center; /* Center card content vertically and horizontally */
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.card:hover {
-  animation: pulse 1s ease-in-out infinite; /* Add the pulse animation to the hover selector */
-  transform: scale(1.05); /* Increase the size of the card on hover */
-  cursor: pointer; /* Change the cursor to a pointer on hover */
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  object-fit: cover; /* Make sure image takes up full width of card */
-}
-
-.card .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.5);
-  visibility: hidden;
-  opacity: 0;
-}
-
-.card:hover .overlay {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-}
-
-.card .overlay .name {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 5px;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  flex-direction: column;
   font-size: 16px;
   font-weight: bold;
-  text-align: center;
-  text-transform: capitalize;
-}
-
-button:active {
-  background-color: #ccc;
   color: #fff;
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+.card-type-bug {
+  background-color: #8cb230; /* Bug */
 }
 
-.h1-title {
-  margin-top: 3.5%;
+.card-type-dark {
+  background-color: #58575f; /* Dark */
+}
+
+.card-type-dragon {
+  background-color: #0f6ac0; /* Dragon */
+}
+
+.card-type-electric {
+  background-color: #eed535; /* Electric */
+}
+
+.card-type-fairy {
+  background-color: #ed6ec7; /* Fairy */
+}
+
+.card-type-fighting {
+  background-color: #d04164; /* Fighting */
+}
+
+.card-type-fire {
+  background-color: #fd7d24; /* Fire */
+}
+
+.card-type-flying {
+  background-color: #748fc9; /* Flying */
+}
+
+.card-type-ghost {
+  background-color: #556aae; /* Ghost */
+}
+
+.card-type-grass {
+  background-color: #62b957; /* Grass */
+}
+
+.card-type-ground {
+  background-color: #dd7748; /* Ground */
+}
+
+.card-type-ice {
+  background-color: #61cec0; /* Ice */
+}
+
+.card-type-normal {
+  background-color: #9da0aa; /* Normal */
+}
+
+.card-type-poison {
+  background-color: #a552cc; /* Poison */
+}
+
+.card-type-psychic {
+  background-color: #ea5d60; /* Psychic */
+}
+
+.card-type-rock {
+  background-color: #baab82; /* Rock */
+}
+
+.card-type-steel {
+  background-color: #417d9a; /* Steel */
+}
+
+.card-type-water {
+  background-color: #4a90da; /* Water */
+}
+  
+.card:hover {
+  background-color: #3b4cca; /* Cerulean Blue */
+}
+
+.card-img {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-name {
+  margin-top: 5px;
+  color: #000000; /* Golden Yellow */
+}
+
+.popup-img {
+  width: 50%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-form-input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.popup-submit-button {
+  background-color: #ff0000; /* Red */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.popup-submit-button:hover {
+  background-color: #cc0000; /* Boston University Red */
 }

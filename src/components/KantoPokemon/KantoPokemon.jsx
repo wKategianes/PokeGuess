@@ -57,7 +57,9 @@ export default function KantoPokemon({ user, setUser }) {
         setErrorMessage(null); // clear error message
       }, 1500);
     }
-  };  
+  };
+  
+  
 
   return (
     <>
@@ -68,15 +70,15 @@ export default function KantoPokemon({ user, setUser }) {
           pokemonData.map((pokemon) => (
             <div
               key={pokemon.id}
-              className="card"
+              className={`card card-type-${pokemon.types[0].type.name}`}
               onClick={() => handleClick(pokemon.id)}
             >
               <img
                 src={pokemon.sprites.other['official-artwork'].front_default}
                 alt={pokemon.name}
-                className="img"
+                className="card-img"
               />
-              <div className="name">{pokemon.name}</div>
+              <div className="card-name">{pokemon.name}</div>
             </div>
           ))
         ) : (
@@ -112,16 +114,19 @@ export default function KantoPokemon({ user, setUser }) {
                 src={selectedPokemon.sprites.other['official-artwork'].front_default}
                 alt={selectedPokemon.name}
                 style={{ maxWidth: '100%', marginBottom: '10px' }}
+                className="popup-img"
               />
-              <form onSubmit={handleGuess}>
+              <form onSubmit={handleGuess}
+              className="popup-form">
                 <input
                   type="text"
                   placeholder="Enter your guess"
                   style={{ width: '100%', padding: '5px' }}
                   value={guess}
                   onChange={(event) => setGuess(event.target.value)}
+                  className="popup-form-input"
                 />
-                <button type="submit">Guess</button>
+                <button type="submit" className="popup-submit-button">Guess</button>
               </form>
               {isCorrectGuess && <p>Correct!</p>}
               {errorMessage && <p>{errorMessage}</p>}
