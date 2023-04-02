@@ -46,12 +46,12 @@ th:first-child::before {
   position: absolute;
   top: 50%;
   left: 0;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scaleX(-1);
   width: 64px;
   height: 64px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
+  background-image: url('https://projectpokemon.org/images/normal-sprite/pikachu-kantocap.gif');
 }
 
 th:last-child::after {
@@ -64,5 +64,5 @@ th:last-child::after {
   height: 64px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png');
+  background-image: url('https://projectpokemon.org/images/normal-sprite/pikachu-kantocap.gif');
 }

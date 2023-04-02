@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import * as userAPI from '../../utilities/users-api';
 import Pokedex from 'pokedex-promise-v2';
 import trainerTriviaLogo from '../../images/TrainerTriviaLogo.png';
-import scoreLogo from '../../images/ScoreLogo.png';
 import './KantoPokemon.css';
 
 export default function KantoPokemon({ user, setUser }) {
@@ -12,6 +11,7 @@ export default function KantoPokemon({ user, setUser }) {
   const [isCorrectGuess, setIsCorrectGuess] = useState(false);
   let [score, setScore] = useState(user.score[0].value);
   const [errorMessage, setErrorMessage] = useState('');
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const P = new Pokedex();
@@ -73,9 +73,15 @@ export default function KantoPokemon({ user, setUser }) {
               key={pokemon.id}
               className={`card card-type-${pokemon.types[0].type.name}`}
               onClick={() => handleClick(pokemon.id)}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
               <img
-                src={pokemon.sprites.other['official-artwork'].front_default}
+                src={
+                  isHovered
+                    ? "https://projectpokemon.org/images/normal-sprite/" + pokemon.name.toLowerCase() + ".gif"
+                    : pokemon.sprites.other["official-artwork"].front_default
+                }
                 alt={pokemon.name}
                 className="card-img"
               />

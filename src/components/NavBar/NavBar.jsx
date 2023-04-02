@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 import './NavBar.css';
@@ -15,7 +16,9 @@ export default function NavBar({ user, setUser }) {
   return (
     <nav className="NavBar">
       <div className="logo">
-        <img src={logo} alt="Pokeball logo" />
+        <div className="logo-image">
+          <img src={logo} alt="Pokeball logo" />
+        </div>
       </div>
       {user && (
         <div className="navItems">
