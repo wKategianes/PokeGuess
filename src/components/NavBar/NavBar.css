@@ -3,13 +3,13 @@
   justify-content: space-between;
   align-items: center;
   background-color: #e53d2f; /* pokeball red */
-  border-radius: 5px;
   padding: 10px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1;
+  border-bottom: 1px solid black;
 }
 
 .logo {
@@ -21,7 +21,14 @@
   height: 50px;
 }
 
-.navItem {
+.navItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-grow: 1;
+}
+
+.navItem, .navTopTrainer, .navLogout {
   background-color: #4a4ae6; /* blue */
   border: none;
   border-radius: 5px;
@@ -35,15 +42,31 @@
   text-decoration: none;
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
   box-shadow: 0px 0px 10px #000;
-  flex: 1; /* Add this to make the buttons expand to fill the space */
-  margin: 0 5px; /* Add this to add some space between the buttons */
 }
 
-.navItem:hover {
+.navItem:hover, .navTopTrainer:hover, .navLogout:hover {
   background-color: #3b3be3; /* darker blue */
   transform: scale(1.05);
 }
 
-.main {
-  padding-top: 60px; /* adjust this value to match the height of your NavBar */
+.score-navItem {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.score-navItem img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+
+.user-score-span {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f9dc5c; /* Pikachu yellow */
+  border: 2px solid #3b3be3;
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #000;
 }

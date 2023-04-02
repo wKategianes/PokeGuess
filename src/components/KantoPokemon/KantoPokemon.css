@@ -1,5 +1,6 @@
 .h1-title {
   text-align: center;
+  margin-top: 2.5%;
 }
 
 .card {
@@ -139,3 +140,27 @@
 .popup-submit-button:hover {
   background-color: #cc0000; /* Boston University Red */
 }
+
+/* Define the score container styles */
+.score-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 20px;
+  position: absolute;
+  top: 45px;
+  right: 5px;
+  background-color: #3b4cca;
+}
+
+/* Define the score image styles */
+.score-container img {
+  height: 30px;
+  vertical-align: -6px;
+}
+
+/* Define the score text styles */
+.score-container .score {
+  font-size: 24px;
+}
+

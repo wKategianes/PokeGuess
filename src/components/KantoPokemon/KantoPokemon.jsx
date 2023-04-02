@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import * as userAPI from '../../utilities/users-api';
 import Pokedex from 'pokedex-promise-v2';
+import trainerTriviaLogo from '../../images/TrainerTriviaLogo.png';
+import scoreLogo from '../../images/ScoreLogo.png';
 import './KantoPokemon.css';
 
 export default function KantoPokemon({ user, setUser }) {
@@ -63,8 +65,7 @@ export default function KantoPokemon({ user, setUser }) {
 
   return (
     <>
-      <h1 className='h1-title'>Kanto Pokemon</h1>
-      <p>Score: {score}</p>
+      <h1 className='h1-title'><img src={trainerTriviaLogo} alt="Trainer Trivia Logo" /></h1>
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         {pokemonData.length > 0 ? (
           pokemonData.map((pokemon) => (
