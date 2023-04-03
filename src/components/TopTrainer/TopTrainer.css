@@ -1,68 +1,120 @@
-/* Header */
-.top-trainer h1 {
-  color: #ffcb05;
-  font-size: 48px;
-  text-align: center;
-  margin-top: 3.5%;
-  margin-bottom: 40px;
-  text-shadow: 2px 2px 2px rgba(0,0,0,0.3);    
+/* Top trainer */
+.top-trainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pikachu {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+}
+
+.pikachu:first-child {
+  top: -30px;
+  left: -30px;
+}
+
+.pikachu:last-child {
+  top: -30px;
+  right: -30px;
+  transform: scaleX(-1);
+}
+
+.top-trainer-row {
+  background-color: #FFCC00;
+  animation: top-trainer 1s infinite alternate;
+}
+
+@keyframes top-trainer {
+  from {
+    background-color: #FFCC00;
+  }
+  to {
+    background-color: #D5A100;
+  }
 }
 
 /* Table */
 table {
-  width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  margin-top: 5%;
   margin-bottom: 40px;
-  border: 2px solid #ffcb05;
+  border: 2px solid #000000;
+  width: 100%;
+  background-color: #FFFFFF;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-th {
-  background-color: #ffcb05;
-  color: #2f2f2f;
+/* Table head */
+thead {
+  background-color: #0075BE; /* blue pokemon color */
+  color: #FFCC00;
   font-size: 24px;
   font-weight: bold;
-  padding: 20px;
   text-align: center;
   text-transform: uppercase;
-  position: relative;
-  border: 2px solid #ffcb05;
+  border: 2px solid #000000;
 }
 
-td {
-  background-color: #f2f2f2;
+/* Table body */
+tbody td {
+  background-color: #DFDFDF;
   color: #2f2f2f;
-  font-size: 18px;
-  padding: 20px;
+  font-size: 20px;
   text-align: center;
   vertical-align: middle;
+  border: 1px solid #000000;
+}
+
+/* Style user/score td's */
+td.td-user {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+td.td-score {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/* Pokeball */
+.pokeball {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+  background-color: #FB1B1B;
+  border-radius: 50%;
+  border: 2px solid #000000;
+  display: inline-block;
   position: relative;
-  border: 2px solid #ffcb05;
+  overflow: hidden;
 }
 
-/* Pikachu images */
-th:first-child::before {
+.pokeball::before {
   content: "";
   position: absolute;
   top: 50%;
-  left: 0;
-  transform: translateY(-50%) scaleX(-1);
-  width: 64px;
-  height: 64px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url('https://projectpokemon.org/images/normal-sprite/pikachu-kantocap.gif');
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  background-color: #fff;
+  border-radius: 50%;
 }
 
-th:last-child::after {
+.pokeball::after {
   content: "";
   position: absolute;
   top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: 64px;
-  height: 64px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url('https://projectpokemon.org/images/normal-sprite/pikachu-kantocap.gif');
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 16px;
+  border-color: transparent transparent transparent #000000;
 }

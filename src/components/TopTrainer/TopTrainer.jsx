@@ -15,23 +15,23 @@ export default function TopTrainer() {
 
   return (
     <div className="top-trainer">
-      <h1>Top Trainers</h1>
+      <div className="top-trainer-header">
+      </div>
       <table>
         <thead>
+          <tr><th colSpan={2}>            
+              <span className="top-trainers-title">Top Trainers</span>
+            </th></tr>
           <tr>
-            <th>User</th>
+            <th >User</th>
             <th>Score</th>
           </tr>
         </thead>
         <tbody>
           {sortedUsers.map((user) => (
-            <tr key={user._id}>
-              <td>
-                {user.name}
-              </td>
-              <td>
-                {user.score[0].value}
-              </td>
+            <tr key={user._id} className="top-trainer-row">
+              <td className='td-user'>{user.name}</td>
+              <td className='td-score'>{user.score[0].value}</td>
             </tr>
           ))}
         </tbody>
