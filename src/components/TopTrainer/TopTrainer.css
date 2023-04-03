@@ -1,26 +1,19 @@
+@font-face {
+  font-family: 'PokemonSolid';
+  src: url('../../fonts/PokemonSolid.ttf');
+}
+
 /* Top trainer */
 .top-trainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.pikachu {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-}
-
-.pikachu:first-child {
-  top: -30px;
-  left: -30px;
-}
-
-.pikachu:last-child {
-  top: -30px;
-  right: -30px;
-  transform: scaleX(-1);
+.top-trainer-span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .top-trainer-row {
@@ -28,93 +21,53 @@
   animation: top-trainer 1s infinite alternate;
 }
 
-@keyframes top-trainer {
-  from {
-    background-color: #FFCC00;
-  }
-  to {
-    background-color: #D5A100;
-  }
-}
-
 /* Table */
 table {
   border-collapse: collapse;
-  border-spacing: 0;
   margin-top: 5%;
-  margin-bottom: 40px;
-  border: 2px solid #000000;
-  width: 100%;
-  background-color: #FFFFFF;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid #000000;
 }
 
 /* Table head */
 thead {
-  background-color: #0075BE; /* blue pokemon color */
-  color: #FFCC00;
-  font-size: 24px;
-  font-weight: bold;
+  background-color: #4a90da; /* blue pokemon color */
+  color: #000000;
+  border: 1px solid #000000;
+  font-size: x-large;
+}
+
+th {
+  padding: 10px;
+  width: 50%;
   text-align: center;
-  text-transform: uppercase;
-  border: 2px solid #000000;
+  position: relative;
 }
 
 /* Table body */
 tbody td {
   background-color: #DFDFDF;
   color: #2f2f2f;
-  font-size: 20px;
   text-align: center;
   vertical-align: middle;
   border: 1px solid #000000;
+  padding: 10px;
+  width: 50%;
 }
 
 /* Style user/score td's */
 td.td-user {
-  font-weight: bold;
-  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
 }
 
 td.td-score {
-  font-weight: bold;
-  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
 }
 
-/* Pokeball */
-.pokeball {
-  width: 32px;
-  height: 32px;
-  margin-right: 10px;
-  background-color: #FB1B1B;
-  border-radius: 50%;
-  border: 2px solid #000000;
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-}
-
-.pokeball::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 22px;
-  height: 22px;
-  background-color: #fff;
-  border-radius: 50%;
-}
-
-.pokeball::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(45deg);
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent #000000;
+.pokeballSpin {
+  width: 50px;
+  height: 50px;
 }

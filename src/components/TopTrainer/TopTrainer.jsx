@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import pokeballSpin from '../../images/pokeballSpin.gif';
 import './TopTrainer.css';
 
 export default function TopTrainer() {
@@ -20,10 +21,11 @@ export default function TopTrainer() {
       <table>
         <thead>
           <tr><th colSpan={2}>            
-              <span className="top-trainers-title">Top Trainers</span>
+              {/* <span className="top-trainers-title">Top Trainers</span> */}
+              <span className='top-trainer-span'><img className='pokeballSpin' src={pokeballSpin} alt="Pokeball" />Top Trainers<img className='pokeballSpin' src={pokeballSpin} alt="Pokeball" /></span>
             </th></tr>
           <tr>
-            <th >User</th>
+            <th >Name</th>
             <th>Score</th>
           </tr>
         </thead>

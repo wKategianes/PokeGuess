@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import * as userService from '../../utilities/users-service';
 import './NavBar.css';
@@ -6,12 +6,16 @@ import logo from '../../images/pokeball.png';
 import scoreImage from '../../images/ScoreLogo.png';
 
 export default function NavBar({ user, setUser }) {
+  const [score, setScore] = useState(user?.score?.[0]?.value || '');
+
+  useEffect(() => {
+    setScore(user?.score?.[0]?.value || '');
+  }, [user]);
+
   function handleLogOut() {
     userService.logOut();
     setUser(null);
   }
-
-  const score = user?.score?.[0]?.value || '';
 
   return (
     <nav className="NavBar">

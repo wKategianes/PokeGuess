@@ -1,6 +1,6 @@
 .NavBar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #e53d2f; /* pokeball red */
   padding: 10px;
@@ -32,7 +32,6 @@
   }
 }
 
-
 .navItems {
   display: flex;
   align-items: center;
@@ -52,13 +51,13 @@
   padding: 10px;
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
-  box-shadow: 0px 0px 10px #000;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0px 0px 10px #4a4ae6; /* add glow effect using box-shadow */
 }
 
 .navItem:hover, .navTopTrainer:hover, .navLogout:hover {
-  background-color: #3b3be3; /* darker blue */
   transform: scale(1.05);
+  box-shadow: 0px 0px 20px #fff; /* increase the glow effect on hover */
 }
 
 .score-navItem {
@@ -71,7 +70,6 @@
   height: 40px;
   margin-right: 10px;
 }
-
 
 .user-score-span {
   font-size: 16px;

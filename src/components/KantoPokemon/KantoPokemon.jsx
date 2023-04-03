@@ -13,7 +13,6 @@ export default function KantoPokemon({ user, setUser }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [hoveredPokemon, setHoveredPokemon] = useState(null);
 
-
   useEffect(() => {
     const P = new Pokedex();
 
@@ -21,9 +20,9 @@ export default function KantoPokemon({ user, setUser }) {
     const pokemonIDs = Array.from({ length: 151 }, (_, index) => index + 1);
     Promise.all(pokemonIDs.map((id) => P.getResource(`/api/v2/pokemon/${id}`)))
       .then((responses) => {
-        // Shuffle the responses array randomly and select the first 8 items
+        // Shuffle the responses array randomly and select the first 6 items
         const shuffledResponses = responses.sort(() => Math.random() - 0.5);
-        setPokemonData(shuffledResponses.slice(0, 8));
+        setPokemonData(shuffledResponses.slice(0, 6));
       })
       .catch((error) => {
         console.log(error);
@@ -44,9 +43,7 @@ export default function KantoPokemon({ user, setUser }) {
       setIsCorrectGuess(true);
       let newScore = score++;
       setScore(newScore);
-      console.log(score, "This is score variable on line 64 of the handleGuess function");
       const updateScore = await userAPI.modifyScore(user._id, score);
-      console.log(updateScore, "This is updateScore right before the setUser(updateScore)");
       const updateUser = { ...updateScore };
       setUser(updateUser);
       setScore(updateScore.score[0].value);
@@ -62,12 +59,10 @@ export default function KantoPokemon({ user, setUser }) {
     }
   };
 
-
-
   return (
     <>
       <h1 className='h1-title'><img src={trainerTriviaLogo} alt="Trainer Trivia Logo" /></h1>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <div className='div-pokemonData' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', height: '100vh' }}>
         {pokemonData.length > 0 ? (
           pokemonData.map((pokemon) => (
             <div
@@ -76,6 +71,7 @@ export default function KantoPokemon({ user, setUser }) {
               onClick={() => handleClick(pokemon.id)}
               onMouseEnter={() => setHoveredPokemon(pokemon.id)}
               onMouseLeave={() => setHoveredPokemon(null)}
+              style={{ width: 'calc(33.33% - 10px)' }} // added style to set width
             >
               <img
                 src={
@@ -86,13 +82,11 @@ export default function KantoPokemon({ user, setUser }) {
                 alt={pokemon.name}
                 className="card-img"
               />
-              <div className="card-name">{pokemon.name}</div>
             </div>
           ))
         ) : (
           <p>Loading...</p>
         )}
-
         {selectedPokemon && (
           <div
             style={{
