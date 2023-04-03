@@ -11,7 +11,8 @@ export default function KantoPokemon({ user, setUser }) {
   const [isCorrectGuess, setIsCorrectGuess] = useState(false);
   let [score, setScore] = useState(user.score[0].value);
   const [errorMessage, setErrorMessage] = useState('');
-  const [isHovered, setIsHovered] = useState(false);
+  const [hoveredPokemon, setHoveredPokemon] = useState(null);
+
 
   useEffect(() => {
     const P = new Pokedex();
@@ -46,7 +47,7 @@ export default function KantoPokemon({ user, setUser }) {
       console.log(score, "This is score variable on line 64 of the handleGuess function");
       const updateScore = await userAPI.modifyScore(user._id, score);
       console.log(updateScore, "This is updateScore right before the setUser(updateScore)");
-      const updateUser = {...updateScore};
+      const updateUser = { ...updateScore };
       setUser(updateUser);
       setScore(updateScore.score[0].value);
       setTimeout(() => {
@@ -60,8 +61,8 @@ export default function KantoPokemon({ user, setUser }) {
       }, 1500);
     }
   };
-  
-  
+
+
 
   return (
     <>
@@ -73,12 +74,12 @@ export default function KantoPokemon({ user, setUser }) {
               key={pokemon.id}
               className={`card card-type-${pokemon.types[0].type.name}`}
               onClick={() => handleClick(pokemon.id)}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
+              onMouseEnter={() => setHoveredPokemon(pokemon.id)}
+              onMouseLeave={() => setHoveredPokemon(null)}
             >
               <img
                 src={
-                  isHovered
+                  pokemon.id === hoveredPokemon
                     ? "https://projectpokemon.org/images/normal-sprite/" + pokemon.name.toLowerCase() + ".gif"
                     : pokemon.sprites.other["official-artwork"].front_default
                 }
@@ -124,7 +125,7 @@ export default function KantoPokemon({ user, setUser }) {
                 className="popup-img"
               />
               <form onSubmit={handleGuess}
-              className="popup-form">
+                className="popup-form">
                 <input
                   type="text"
                   placeholder="Enter your guess"
