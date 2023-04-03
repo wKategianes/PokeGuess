@@ -1,32 +1,33 @@
 import { useState, useEffect } from 'react';
 import * as userAPI from '../../utilities/users-api';
 import Pokedex from 'pokedex-promise-v2';
+import trainerTriviaLogo from '../../images/TrainerTriviaLogo.png';
 import './GalarPokemon.css';
 
-export default function GalarPokemon({ user, setUser }) {
+export default function KantoPokemon({ user, setUser }) {
   const [pokemonData, setPokemonData] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState(null);
   const [guess, setGuess] = useState('');
   const [isCorrectGuess, setIsCorrectGuess] = useState(false);
   let [score, setScore] = useState(user.score[0].value);
   const [errorMessage, setErrorMessage] = useState('');
+  const [hoveredPokemon, setHoveredPokemon] = useState(null);
 
   useEffect(() => {
     const P = new Pokedex();
 
     // Get data for all Pokemon by ID
-  const pokemonIDs = Array.from({ length: 89 }, (_, index) => index + 810);
-  Promise.all(pokemonIDs.map((id) => P.getResource(`/api/v2/pokemon/${id}`)))
-    .then((responses) => {
-      // Shuffle the responses array randomly and select the first 8 items
-      const shuffledResponses = responses.sort(() => Math.random() - 0.5);
-      setPokemonData(shuffledResponses.slice(0, 8));
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}, []);
-
+    const pokemonIDs = Array.from({ length: 89 }, (_, index) => index + 810);
+    Promise.all(pokemonIDs.map((id) => P.getResource(`/api/v2/pokemon/${id}`)))
+      .then((responses) => {
+        // Shuffle the responses array randomly and select the first 6 items
+        const shuffledResponses = responses.sort(() => Math.random() - 0.5);
+        setPokemonData(shuffledResponses.slice(0, 6));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleClick = (id) => {
     const pokemon = pokemonData.find(p => p.id === id);
@@ -42,10 +43,8 @@ export default function GalarPokemon({ user, setUser }) {
       setIsCorrectGuess(true);
       let newScore = score++;
       setScore(newScore);
-      console.log(score, "This is score variable on line 64 of the handleGuess function");
       const updateScore = await userAPI.modifyScore(user._id, score);
-      console.log(updateScore, "This is updateScore right before the setUser(updateScore)");
-      const updateUser = {...updateScore};
+      const updateUser = { ...updateScore };
       setUser(updateUser);
       setScore(updateScore.score[0].value);
       setTimeout(() => {
@@ -62,28 +61,32 @@ export default function GalarPokemon({ user, setUser }) {
 
   return (
     <>
-      <h1 className='h1-title'>Kanto Pokemon</h1>
-      <p>Score: {score}</p>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <h1 className='h1-title'><img src={trainerTriviaLogo} alt="Trainer Trivia Logo" /></h1>
+      <div className='div-pokemonData' style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', height: '100vh' }}>
         {pokemonData.length > 0 ? (
           pokemonData.map((pokemon) => (
             <div
               key={pokemon.id}
               className={`card card-type-${pokemon.types[0].type.name}`}
               onClick={() => handleClick(pokemon.id)}
+              onMouseEnter={() => setHoveredPokemon(pokemon.id)}
+              onMouseLeave={() => setHoveredPokemon(null)}
+              style={{ width: 'calc(33.33% - 10px)' }} // added style to set width
             >
               <img
-                src={pokemon.sprites.other['official-artwork'].front_default}
+                src={
+                  pokemon.id === hoveredPokemon
+                    ? "https://projectpokemon.org/images/normal-sprite/" + pokemon.name.toLowerCase() + ".gif"
+                    : pokemon.sprites.other["official-artwork"].front_default
+                }
                 alt={pokemon.name}
                 className="card-img"
               />
-              <div className="card-name">{pokemon.name}</div>
             </div>
           ))
         ) : (
           <p>Loading...</p>
         )}
-
         {selectedPokemon && (
           <div
             style={{
@@ -116,7 +119,7 @@ export default function GalarPokemon({ user, setUser }) {
                 className="popup-img"
               />
               <form onSubmit={handleGuess}
-              className="popup-form">
+                className="popup-form">
                 <input
                   type="text"
                   placeholder="Enter your guess"
