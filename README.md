@@ -68,7 +68,7 @@ Laid out before you are the steps needed to become the very best!:
 
 <details closed>
   <summary> Entity Relationship Diagram (ERD) </summary>
-  <a href="https://user-images.githubusercontent.com/31415907/223964365-755bf9c4-04df-4a39-8586-38ff6b967fa0.png"
+  <a href="https://trello.com/1/cards/641cce08d5654e26203b7f7a/attachments/641cce0dcd73c394b1b02aa5/previews/641cce0ecd73c394b1b02ab4/download/ERD.png"
     > ERD</a>
 </details>
 
