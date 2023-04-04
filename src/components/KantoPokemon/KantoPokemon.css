@@ -117,7 +117,7 @@
 
 .card-name {
   margin-top: 5px;
-  color: #000000; /* Golden Yellow */
+  color: #000000;
 }
 
 .popup-img {
@@ -139,7 +139,7 @@
 }
 
 .popup-submit-button {
-  background-color: #ff0000; /* Red */
+  background-color: #ff0000;
   color: white;
   border: none;
   border-radius: 5px;
@@ -174,4 +174,3 @@
 .score-container .score {
   font-size: 24px;
 }
-
