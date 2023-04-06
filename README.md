@@ -13,10 +13,9 @@
 
 ## :pencil: Description
 
-<p>Hope you are ready to test your Pokemon knowledge!</p>
-<p>All of your favorite Pokemon are here!</p>
-<p>PokeGuess will test your knowledge!</p>
-<p>This application will allow you to login and begin answering questions about Pokemon of your choice.</p>
+<p>PokeGuess is a game that tests your knowledge of your favorite Pokemon. Hope you are ready to put your mind to the test!</p>
+<p>All of your favorite Pokemon are here and you can compete against your fellow trainers for the top score.</p>
+<p>You can create an account and start playing in a few clicks.</p>
 
 </div>
 
